@@ -1,4 +1,4 @@
-# Image to Image Translation Using GANs
+# DCGAN & CycleGAN for Image Synthesis Taskls
 
 ## About 
 
