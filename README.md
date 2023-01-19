@@ -4,11 +4,17 @@
 
 This study explores two algorithmic methods that automatically synthesize new images of cats based on features learned from a training set of existing cat images.  
 
+<br>
+
 1. The first method uses deep Convolutional GAN (DCGAN) to replicate cat images in the style of the training set. Image augmentation is also explored as a method to stabilize the model and improve training accuracy and speed. 
 
 2. The second method uses the CycleGAN algorithm to synthesize a new image that shares similar content of an existing image but appearing in a different style.  In this case, we explore a method to synthesize a new cat image that maintains the pose and content of an image of a gray cat (see “Part 2: CycleGAN” below) but created in the style of “grumpy cat”, as shown in image above.  
 
+<br>
+
 Cycle-Consistency loss is explored as a means of improving CycleGAN accuracy and speed. Though this exploration focuses on cat images, both DCGAN and CycleGAN can be applied to any image content, including images of architecture.  For example, CycleGAN can be used to transform a Frank Gehry building into the style of Zaha Hadid and vice versa, while DCGAN can create novel “designs” in any style.
+
+<br>
 
 ![](images/cats_grumpy.png)
 
