@@ -24,9 +24,8 @@ Cycle-Consistency loss is explored as a means of improving CycleGAN accuracy and
 
 An expanded description of this model implimentation can be found on its project page here:
 
-```
 www.michaelhasey.com/cyclegan
-```
+
 
 <br>
 
