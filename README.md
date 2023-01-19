@@ -31,10 +31,8 @@ www.michaelhasey.com/cyclegan
 
 ## Table of Contents
 
-- [Dataset](#Dataset)
-- [Approach](#Approach)
-- [Implementation](#Implementation)
-- [Performance](#Performance)
+- [DCGAN](#DCGAN)
+- [CycleGAN](#CycleGAN)
 - [References](#References)
 - [Citation](#Citation)
 
