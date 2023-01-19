@@ -184,8 +184,8 @@ A final approx. 6 hour training session that ran through 100,000 iterations was 
 
 ## References
 
-[ 1 ] https://poloclub.github.io/cnn-explainer
-[ 2 ] https://learning-image-synthesis.github.io/assignments/hw
+1. https://poloclub.github.io/cnn-explainer
+2. https://learning-image-synthesis.github.io/assignments/hw
 
 This project was completed as part of Carnegie Melon University's Learning Based Image Synthesis course 16 726 taught by Jun-Yan Zhu in Spring of 2021.
 
