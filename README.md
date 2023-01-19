@@ -1,4 +1,4 @@
-# DCGAN & CycleGAN for Image Synthesis Taskls
+# DCGAN & CycleGAN for Image Synthesis Tasks
 
 ## About 
 
