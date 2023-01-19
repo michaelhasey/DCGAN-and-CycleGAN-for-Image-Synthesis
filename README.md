@@ -46,6 +46,9 @@ www.michaelhasey.com/cyclegan
 ## DCGAN
 
 The DCGAN model architecture is made up of two major components.  The generator, which synthesizes new images based on learned features from the training set and the discriminator which attempts to determine whether this new image is real (an original image from the training set) or fake (a new image synthesized by training set).  As the model is trained, the generator tries to outsmart the discriminator by producing more accurate and realistic images in the style of the training set.  It does this by updating its learned weights which result from loss factors derived from this generator-discriminator competitive interaction.
+```
+vanilla_gan.py
+```
 
 <br>
 
@@ -125,7 +128,9 @@ After 300 epochs, it is quite clear that the discriminator and generator losses 
 ## CycleGAN
 
 “In the second part, we will implement a more complex GAN architecture called CycleGAN for the task of image-to-image translation. We will train the CycleGAN to convert between different types of two kinds of cats (Grumpy and Russian Blue).” [2]
-
+```
+cycle_gan.py
+```
 ![](images/cycle_100_000.gif)
 
 <br>
