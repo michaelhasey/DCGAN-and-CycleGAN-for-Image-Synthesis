@@ -71,7 +71,7 @@ Now, we will implement the generator of the DCGAN, which consists of a sequence 
 The discriminator  architecture is shown to the right.  It incorporates the original 3 channel rgb image on the left which is progressively downsampled and analyzed via a series of transpose convolutional layers.  The final and smallest layer (1x1x1) represents the final stage in the process where it determines whether the image it is analyzing is real or fake. 
 
 ![](images/descrim_code.png)
-![](images/descrim_2.png.png)
+![](images/descrim_2.png)
 
 <br>
 
