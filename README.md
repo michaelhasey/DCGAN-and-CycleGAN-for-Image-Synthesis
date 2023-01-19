@@ -35,13 +35,15 @@ www.michaelhasey.com/cyclegan
 
 <br>
 
-## Method 1 DCGAN
+## DCGAN
 
 The DCGAN model architecture is made up of two major components.  The generator, which synthesizes new images based on learned features from the training set and the discriminator which attempts to determine whether this new image is real (an original image from the training set) or fake (a new image synthesized by training set).  As the model is trained, the generator tries to outsmart the discriminator by producing more accurate and realistic images in the style of the training set.  It does this by updating its learned weights which result from loss factors derived from this generator-discriminator competitive interaction.
 
 <br>
 
-### Step 1: Data Augmentation
+### Approach
+
+#### Step 1: Data Augmentation
 
 DCGAN performs poorly without data augmentation on a small dataset because the discriminator can easily overfit to a real dataset. To fix this, we augment our data (ex. random crop and random horizontal flip) and add this to the training set, thus increasing the training sets size and diversity.
 
@@ -49,7 +51,7 @@ DCGAN performs poorly without data augmentation on a small dataset because the d
 
 <br>
 
-### Step 2: Constructing the Generator Model Architecture
+#### Step 2: Constructing the Generator Model Architecture
 
 Now, we will implement the generator of the DCGAN, which consists of a sequence of transpose convolutional layers that progressively upsample the input noise sample to generate a fake image. The generator in this DCGAN has the following architecture. [2]
 
@@ -58,7 +60,7 @@ Now, we will implement the generator of the DCGAN, which consists of a sequence 
 
 <br>
 
-### Step 3: Constructing the Discriminator Model Architecture
+#### Step 3: Constructing the Discriminator Model Architecture
 
 The discriminator  architecture is shown to the right.  It incorporates the original 3 channel rgb image on the left which is progressively downsampled and analyzed via a series of transpose convolutional layers.  The final and smallest layer (1x1x1) represents the final stage in the process where it determines whether the image it is analyzing is real or fake. 
 
@@ -67,7 +69,7 @@ The discriminator  architecture is shown to the right.  It incorporates the orig
 
 <br>
 
-### Step 4: Setting Model Hyper Parameters to Downsample & Upsample the Image
+#### Step 4: Setting Model Hyper Parameters to Downsample & Upsample the Image
 
 Within both the generator and discriminator model shown above, the original image is both downsampled and upsampled by a factor of two (ex. 64x64 -> 32x32).  In order to do this, padding must be set to 1, kernel size to 4x4, and stride to 2.  The appropriate padding amount can be determined by the following formula: Padding = ((S-1)*W-S+F)/2, with F = filter size, S = stride, W = width. So Padding = ((2-1)*8-2+4)/2.  Thus, Padding = 1.
 
@@ -75,11 +77,30 @@ Within both the generator and discriminator model shown above, the original imag
 
 <br>
 
-### Step 5: Define the model training Loop
+#### Step 5: Define the model training Loop
 
 “Next, we will implement the training loop for the DCGAN. A DCGAN is simply a GAN with a specific type of generator and discriminator; thus, we train it in exactly the same way as a standard GAN.” [2]  The basic structure for the training procedure is shown below.
 
 ![](images/model.png)
+
+<br>
+
+### Implimentation
+
+#### Command Line Arguments
+
+```
+<num_epochs>:   integer specifying the number of times backpropogation loops through \
+all of the training data
+<data_aug>:  "basic" or "deluxe".  Basic does not augment data.  Deluxe augments all data \
+to help increase synthesis quality.
+```
+
+#### Below is an implimentation example to run DCGAN and generate novel cat images
+
+```
+$ python vanilla_gan.py --num_epochs=100 --data_aug=basic/deluxe
+```
 
 <br>
 
@@ -93,7 +114,7 @@ After 300 epochs, it is quite clear that the discriminator and generator losses 
 
 <br>
 
-## Method 2 CycleGAN
+## CycleGAN
 
 “In the second part, we will implement a more complex GAN architecture called CycleGAN for the task of image-to-image translation. We will train the CycleGAN to convert between different types of two kinds of cats (Grumpy and Russian Blue).” [2]
 
@@ -101,7 +122,9 @@ After 300 epochs, it is quite clear that the discriminator and generator losses 
 
 <br>
 
-### Step 1: Construct the CycleGAN Model Architecture
+### Methods
+
+#### Step 1: Construct the CycleGAN Model Architecture
 
 “The generator in the CycleGAN has layers that implement three stages of computation: 1) the first stage encodes the input via a series of convolutional layers that extract the image features; 2) the second stage then transforms the features by passing them through one or more residual blocks; and 3) the third stage decodes the transformed features using a series of transposed convolutional layers, to build an output image of the same size as the input. The residual block used in the transformation stage consists of a convolutional layer, where the input is added to the output of the convolution. This is done so that the characteristics of the output image (e.g., the shapes of objects) do not differ too much from the input.” [2]
 
@@ -109,7 +132,7 @@ After 300 epochs, it is quite clear that the discriminator and generator losses 
 
 <br>
 
-### Step 2: Implement the CycleGAN Training Loop
+#### Step 2: Implement the CycleGAN Training Loop
 
 The CycleGAN training procedure is a bit more complex the standard “Vanilla” GAN training loop for the previous DCGAN . However, due to the symmetry in the training procedure (ex. all operations are done for both X → Y and Y → X directions), the implementation is not as challenging as initially expected.  Code for both the X → Y and Y → X directions are the same but with X variables replaced by Y variables and vice versa. Similarly, both DCGAN and CycleGAN implement similar least-square error loss function when determining generator and discriminator loss, updating weights, and overall model training.
 
@@ -118,11 +141,27 @@ The CycleGAN training procedure is a bit more complex the standard “Vanilla”
 
 <br>
 
-### Step 3: Impliment Cycle-Consistency Loss to Improve Results
+#### Step 3: Impliment Cycle-Consistency Loss to Improve Results
 
 “The most interesting idea behind CycleGANs (and the one from which they get their name) is the idea of introducing a cycle consistency loss to constrain the model. The idea is that when we translate an image from domain \(X\) to domain \(Y\), and then translate the generated image back to domain \(X\), the result should look like the original image that we started with. The cycle consistency component of the loss is the mean squared error between the input images and their reconstructions obtained by passing through both generators in sequence (i.e., from domain \(X\) to \(Y\) viathe \(X \to Y\) generator, and then from domain \(Y\) back to \(X\) via the \(Y \to X\) generator). The cycle consistency loss for the \(Y \to X \to Y\) cycle is expressed as follows:” [2] As shown in the results below, implementing cycle-consistency loss into the CycleGAN greatly improves results.
 
 ![](images/cyclegan_loss.png)
+
+<br>
+
+### Implimentation
+
+#### Command Line Arguments
+
+```
+<--use_cycle_consistency_loss>:   To incorporate cycle consistency loss which greatly improves results
+```
+
+#### Below is an implimentation example to run DCGAN and generate novel cat images
+
+```
+$ python cycle_gan.py --use_cycle_consistency_loss
+```
 
 <br>
 
