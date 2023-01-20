@@ -6,16 +6,11 @@ This study explores two algorithmic methods, DCGAN & CycleGAN, that automaticall
 
 ![](images/cats_grumpy.png)
 
-<br>
-
 ## Project Page
 
 An expanded description of this model implimentation can be found on its project page here:
 
 www.michaelhasey.com/cyclegan
-
-
-<br>
 
 ## Table of Contents
 
