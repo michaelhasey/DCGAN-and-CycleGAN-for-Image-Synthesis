@@ -76,7 +76,7 @@ Within both the generator and discriminator model shown above, the original imag
 
 <br>
 
-### Implimentation
+### Implementation
 
 #### Command Line Arguments
 
@@ -143,7 +143,7 @@ The CycleGAN training procedure is a bit more complex the standard “Vanilla”
 
 <br>
 
-### Implimentation
+### Implementation
 
 #### Command Line Arguments
 
