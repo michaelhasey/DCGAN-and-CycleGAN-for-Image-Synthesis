@@ -2,24 +2,7 @@
 
 ## About 
 
-This study explores two algorithmic methods that automatically synthesize new images of cats based on features learned from a training set of existing cat images.  
-
-<br>
-
-1. DCGAN -  The first method uses deep Convolutional GAN (DCGAN) to replicate cat images in the style of the training set. Image augmentation is also explored as a method to stabilize the model and improve training accuracy and speed. 
-```
-vanilla_gan.py
-```
-
-2. CycleGAN - The second method uses the CycleGAN algorithm to synthesize a new image that shares similar content of an existing image but appearing in a different style.  In this case, we explore a method to synthesize a new cat image that maintains the pose and content of an image of a gray cat (see “Part 2: CycleGAN” below) but created in the style of “grumpy cat”, as shown in image above.  
-```
-cycle_gan.py
-```
-<br>
-
-Cycle-Consistency loss is explored as a means of improving CycleGAN accuracy and speed. Though this exploration focuses on cat images, both DCGAN and CycleGAN can be applied to any image content, including images of architecture.  For example, CycleGAN can be used to transform a Frank Gehry building into the style of Zaha Hadid and vice versa, while DCGAN can create novel “designs” in any style.
-
-<br>
+This study explores two algorithmic methods, DCGAN & CycleGAN, that automatically synthesize new images of cats based on features learned from a training set of existing cat images.  
 
 ![](images/cats_grumpy.png)
 
@@ -44,6 +27,8 @@ www.michaelhasey.com/cyclegan
 <br>
 
 ## DCGAN
+
+The first method uses deep Convolutional GAN (DCGAN) to replicate cat images in the style of the training set. Image augmentation is also explored as a method to stabilize the model and improve training accuracy and speed. 
 
 The DCGAN model architecture is made up of two major components.  The generator, which synthesizes new images based on learned features from the training set and the discriminator which attempts to determine whether this new image is real (an original image from the training set) or fake (a new image synthesized by training set).  As the model is trained, the generator tries to outsmart the discriminator by producing more accurate and realistic images in the style of the training set.  It does this by updating its learned weights which result from loss factors derived from this generator-discriminator competitive interaction.
 ```
@@ -127,7 +112,8 @@ After 300 epochs, it is quite clear that the discriminator and generator losses 
 
 ## CycleGAN
 
-“In the second part, we will implement a more complex GAN architecture called CycleGAN for the task of image-to-image translation. We will train the CycleGAN to convert between different types of two kinds of cats (Grumpy and Russian Blue).” [2]
+The second method uses the CycleGAN algorithm to synthesize a new image that shares similar content of an existing image but appearing in a different style.  In this case, we explore a method to synthesize a new cat image that maintains the pose and content of an image of a gray cat (see “Part 2: CycleGAN” below) but created in the style of “grumpy cat”.
+
 ```
 cycle_gan.py
 ```
